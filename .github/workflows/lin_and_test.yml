@@ -20,9 +20,17 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
+    steps:
+      - uses: actions/checkout@v3
+      - name: Navigate to Project Directory
+        run: cd ./root/samples/counter-app
       - name: Install Dependencies
-        working-directory: ../../samples/counter-app
+        working-directory: ./root/samples/counter-app
         run: npm install
+      - name: Debug
+        run: |
+          echo "Current directory: $(pwd)"
+          ls -R
       - run: npm cache clean -f
       - run: npm ci --package-lock-only
       - run: npm ci
