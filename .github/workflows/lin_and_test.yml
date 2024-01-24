@@ -14,17 +14,17 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Print Project Directory
+        working-directory: ./csbc1040/csbc1040/samples/counter-app
         run: ls -R
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
+        working-directory: ./csbc1040/csbc1040/samples/counter-app
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
       - uses: actions/checkout@v3
-      - name: Navigate to Project Directory
-        run: cd ./root/samples/counter-app
       - name: Install Dependencies
-        working-directory: ./root/samples/counter-app
+        working-directory: ./csbc1040/csbc1040/samples/counter-app
         run: npm install
       - name: Debug
         run: |
