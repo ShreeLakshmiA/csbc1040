@@ -10,22 +10,20 @@ jobs:
     strategy:
       matrix:
         node-version: [18.x]
-        # See supported Node.js release schedule  at https://nodejs.org/en/about/releases/
     steps:
       - uses: actions/checkout@v3
       - name: Print Project Directory
-        working-directory: ./csbc1040/csbc1040/samples/counter-app
-        run: ls -R
+        run: ls -R ./csbc1040/csbc1040/samples/counter-app
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
-        working-directory: ./csbc1040/csbc1040/samples/counter-app
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
       - uses: actions/checkout@v3
       - name: Install Dependencies
-        working-directory: ./csbc1040/csbc1040/samples/counter-app
         run: npm install
+      - name: Change Directory
+        run: cd ./csbc1040/csbc1040/samples/counter-app
       - name: Debug
         run: |
           echo "Current directory: $(pwd)"
