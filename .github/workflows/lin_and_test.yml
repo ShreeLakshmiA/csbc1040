@@ -20,13 +20,11 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-      - uses: actions/checkout@v3
-      - name: Change Directory
-        run: cd ./csbc1040/csbc1040/samples/counter-app
+      # - uses: actions/checkout@v3
+      # - name: Change Directory
+      #   run: cd ./csbc1040/csbc1040/samples/counter-app
       - name: Install Dependencies
-        run: npm install
-      - run: npm cache clean -f
-      - run: npm ci --package-lock-only
+        run: npm i -g -D parcel-bundler
       - run: npm ci
       - run: npm test
       - run: pm2 restart backendserver
