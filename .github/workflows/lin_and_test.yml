@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Print Project Directory
-        run: ls -R ./csbc1040/csbc1040/samples/counter-app
+        run: ls -R
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
