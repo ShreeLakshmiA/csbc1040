@@ -18,4 +18,4 @@ Welcome to CSBC 1040.
 For aws create a subdomain with the format `aws.MYDOMAINNAME.me` and for GCP with the format `gcp.MYDOMAINNAME.me`.
 
 
-Submit the custom domains for both platforms on moodle.
+Submit the custom domains for both platforms on moodle..
