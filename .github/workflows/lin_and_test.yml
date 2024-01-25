@@ -10,27 +10,41 @@ on:
 
 jobs:
   build:
+    name: Run Lint and Test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - name: Build | Checkout
+        uses: actions/checkout@v3
+      - name: Build | Setup Node App
+        uses: actions/setup-node@v3
         with:
           node-version: 18.x
-      - run: npm install --package-lock-only
-      - run: npm ci
-      - run: npm test
-      - run: pm2 restart backendserver
+      - name: Build | Install Dependencies
+        working-directory: ./samples/counter-app
+        run: npm ci
+      - name: Build | Test
+        working-directory: ./samples/counter-app
+        run: npm test
+      - name: Build | PM2 Restart
+        working-directory: ./samples/counter-app
+        run: pm2 restart backendserver
 
   publish-npm:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - name: Publish |  Checkout
+        uses: actions/checkout@v3
+      - name: Publish | Setup Node App
+        uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18.x
           registry-url: https://registry.npmjs.org/
-      - run: npm ci
-      - run: npm publish
+      - name: Publish | Install Dependencies
+        working-directory: ./samples/counter-app
+        run: npm ci
+      - name: Publish Code
+        working-directory: ./samples/counter-app
+        run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
