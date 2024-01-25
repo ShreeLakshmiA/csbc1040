@@ -25,6 +25,8 @@ jobs:
       - name: Build | Test
         working-directory: ./samples/counter-app
         run: npm test
+      - name: Build | Install pm2
+        run: npm install -g pm2
       - name: Build | PM2 Restart
         working-directory: ./samples/counter-app
         run: pm2 restart backendserver
